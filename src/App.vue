@@ -1,28 +1,28 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Input></Input>
+    <InputBox></InputBox>
     <Result></Result>
   </div>
 </template>
 <!-- 顺丰速运：465218695630 韵达：3915170594632 -->
 <script>
 import Header from './components/Header'
-import Input from './components/Input'
+import InputBox from './components/InputBox'
 import Result from './components/Result'
 export default {
   name: 'App',
   components: {
-    'Header': Header,
-    'Input': Input,
-    'Result': Result,
+    Header: Header,
+    InputBox: InputBox,
+    Result: Result
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
