@@ -1,9 +1,6 @@
 <template>
-  <div class="header">
-    {{msg}}
-  </div>
+  <div class="header">{{msg}}</div>
 </template>
-
 <script>
 export default {
   name: 'Header',
@@ -14,8 +11,11 @@ export default {
   }
 }
 </script>
-
-
 <style scoped>
-.header{font-size:0.28rem;text-align:center;color:#000;margin-bottom:0.4rem;}
+.header {
+  font-size: 0.28rem;
+  text-align: center;
+  color: #000;
+  margin-bottom: 0.4rem;
+}
 </style>
