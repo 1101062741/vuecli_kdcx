@@ -2,12 +2,15 @@
   <div class="input">
     <select>
       <option value>-请选择-</option>
+      <option
+        v-for="item in company"
+        v-bind:value="item.code"
+        v-bind:key="item.code"
+      >{{ item.name }}</option>
     </select>
     <ol>
-    <li v-for="item in company">
-      {{item.name}}
-    </li>
-  </ol>
+      <li v-for="item in company" v-bind:key="item.code">{{item.name}}</li>
+    </ol>
     <input name="code" placeholder="请输入运单号">
     <button @click="get()">查询</button>
     <button @click="get2()">查询</button>
@@ -18,27 +21,27 @@ export default {
   name: 'InputBox',
   data () {
     return {
-      tool:'haha',
-      company:[]
-      }
+      tool: 'haha',
+      company: null
+    }
   },
-  mounted:function(){
+  mounted: function () {
     this.get()
   },
   methods: {
     get () {
-      var _this=this;
-    this.axios.get('/static/json/company.json').then(
-        function (res) {
-          var rs=JSON.parse(res);
-          _this.company.push(rs.data);
-          console.log(_this.company);
-          console.log(rs)          
+      this.axios.get('/static/json/company.json').then(
+        res => {
+          alert(res.data)
+          // var rs = JSON.parse(res)
+          // console.log(_this.company)
+          // console.log(rs)
+          this.company = res.data
         },
-        function () {
+        () => {
           alert('请求失败处理')
         }
-      )     
+      )
     }
   }
 }
