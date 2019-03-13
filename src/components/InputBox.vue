@@ -3,6 +3,11 @@
     <select>
       <option value>-请选择-</option>
     </select>
+    <ol>
+    <li v-for="item in company">
+      {{item.name}}
+    </li>
+  </ol>
     <input name="code" placeholder="请输入运单号">
     <button @click="get()">查询</button>
     <button @click="get2()">查询</button>
@@ -12,18 +17,28 @@
 export default {
   name: 'InputBox',
   data () {
-    return {}
+    return {
+      tool:'haha',
+      company:[]
+      }
+  },
+  mounted:function(){
+    this.get()
   },
   methods: {
     get () {
-      this.axios.get('/static/json/company.json').then(
+      var _this=this;
+    this.axios.get('/static/json/company.json').then(
         function (res) {
-          alert(JSON.stringify(res))
+          var rs=JSON.parse(res);
+          _this.company.push(rs.data);
+          console.log(_this.company);
+          console.log(rs)          
         },
         function () {
           alert('请求失败处理')
         }
-      )
+      )     
     }
   }
 }
