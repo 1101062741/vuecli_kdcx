@@ -3,3 +3,6 @@
 .settings
 node_modules
 .git
+sh.exe.stackdump
+package-lock.json
+.gitignore

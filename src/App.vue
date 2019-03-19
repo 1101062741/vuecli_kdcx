@@ -10,8 +10,12 @@
 import Header from './components/Header'
 import InputBox from './components/InputBox'
 import Result from './components/Result'
+
 export default {
   name: 'App',
+  data(){
+    return {}
+  },
   components: {
     Header: Header,
     InputBox: InputBox,

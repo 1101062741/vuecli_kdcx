@@ -1,6 +1,6 @@
 <template>
   <div class="input">
-    <select>
+    <select v-on:change="indexSelect($event)">
       <option value>-请选择-</option>
       <option
         v-for="item in company"
@@ -8,21 +8,21 @@
         v-bind:key="item.code"
       >{{ item.name }}</option>
     </select>
-    <ol>
-      <li v-for="item in company" v-bind:key="item.code">{{item.name}}</li>
-    </ol>
-    <input name="code" placeholder="请输入运单号">
-    <button @click="get()">查询</button>
-    <button @click="get2()">查询</button>
+    <input name="code" placeholder="请输入运单号" v-model="inputno">
+    <button v-on:click="submit">查询</button>
   </div>
 </template>
 <script>
+import Bus from '../../static/js/Bus'
 export default {
   name: 'InputBox',
   data () {
     return {
       tool: 'haha',
-      company: null
+      company: null,
+      chooseCompany:null,
+      inputno:null,
+      result:null
     }
   },
   mounted: function () {
@@ -32,17 +32,34 @@ export default {
     get () {
       this.axios.get('/static/json/company.json').then(
         res => {
-          alert(res.data)
-          // var rs = JSON.parse(res)
-          // console.log(_this.company)
-          // console.log(rs)
           this.company = res.data
         },
         () => {
           alert('请求失败处理')
         }
       )
-    }
+    },
+    indexSelect(event){
+
+　　console.log(event.target.value);
+    this.chooseCompany=event.target.value
+
+},
+submit(){
+  if(this.chooseCompany=="sf"&&this.inputno=="123"){
+    console.log('submit');
+    this.axios.get('/static/json/result.json').then(
+      res =>{
+        this.result=res.data;
+        console.log(res.data);
+        Bus.$emit('getresultdata',res.data);
+      },
+      ()=>{
+        alert('请求失败处理')
+      }
+    )
+  }
+},
   }
 }
 </script>
